@@ -1,7 +1,6 @@
 // ==UserScript==
 // @name         schichtplaner
 // @namespace    schichtplaner_online
-// @version      03112020
 // @description  adds "enter all/homeoffice/support" button for schichtplaner website
 // @author       Blumlaut
 // @match https://schichtplaner-online.de/dashboard/schedule/*
