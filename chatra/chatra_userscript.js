@@ -1,15 +1,16 @@
 // ==UserScript==
 // @name          Chatra Improved: Dark
 // @namespace     http://userstyles.org
-// @description	  a
+// @description	  a dark chatra skin
 // @author        Blumlaut
 // @homepage      https://github.com/Blumlaut/userstyles-tamperscripts
 // @include       http://app.chatra.io/*
 // @include       https://app.chatra.io/*
 // @include       http://*.app.chatra.io/*
 // @include       https://*.app.chatra.io/*
+// @updateURL     https://github.com/Blumlaut/userstyles-tamperscripts/blob/main/chatra/chatra_userscript.js
 // @run-at        document-start
-// @version       0.20201018150700
+// @version       04112020
 // ==/UserScript==
 (function() {var css = [
 	".nav-item__footer {",
