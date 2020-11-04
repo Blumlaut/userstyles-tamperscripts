@@ -5,8 +5,11 @@
 // @description  adds "enter all/homeoffice/support" button for schichtplaner website
 // @author       Blumlaut
 // @match https://schichtplaner-online.de/dashboard/schedule/*
-// @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.js
+// @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // @require     https://code.jquery.com/jquery-3.5.1.min.js
+// @version       1
+// @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
+// @downloadURL   https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // ==/UserScript==
 
 (function() {

@@ -5,8 +5,11 @@
 // @author       Blumlaut
 // @match        https://twitter.com/*
 // @require     https://code.jquery.com/jquery-3.5.1.min.js
-// @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/twitter/twitter-shownewtweets.js
+// @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/twitter/twitter-shownewtweets.user.js
 // @run-at        document-start
+// @version       1
+// @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/twitter/twitter-shownewtweets.user.js
+// @downloadURL   https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/twitter/twitter-shownewtweets.user.js
 // ==/UserScript==
 
 (function() {
