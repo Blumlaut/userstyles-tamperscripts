@@ -14,7 +14,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version       2
+// @version       3
 // ==/UserScript==
 
 GM_config.init(
@@ -748,7 +748,8 @@ GM_config.init(
 
 	setTimeout(function(){ 
 		
-		var ChatInputTip = document.querySelector('.super-nav__item');
+		var superNavItems = document.querySelectorAll('.super-nav-section');
+        var ChatInputTip = superNavItems[superNavItems.length- 2];
 
 		var btn = document.createElement("BUTTON" );
 		btn.classList.add("super-nav__item")
