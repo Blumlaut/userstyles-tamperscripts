@@ -12,7 +12,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 4
+// @version 5
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -359,6 +359,10 @@ GM_config.init(
 		"",
 		".nav-item.is-banned .nav-item__inner:after {",
 		" background-image:-webkit-linear-gradient(left,#3E3E3E,#3E3E3E);",
+		" background-image:linear-gradient(90deg,#3E3E3E,#3E3E3E)",
+		"}",
+        ".nav-item.is-active.is-banned .nav-item__inner:after {",
+        " background-image:-webkit-linear-gradient(left,#3E3E3E,#3E3E3E);",
 		" background-image:linear-gradient(90deg,#3E3E3E,#3E3E3E)",
 		"}",
 		"",
