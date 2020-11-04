@@ -9,6 +9,7 @@
 // @include       http://*.app.chatra.io/*
 // @include       https://*.app.chatra.io/*
 // @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra_userscript.js
+// @downloadURL   https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra_userscript.js
 // @require            https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @grant              GM_getValue
 // @grant              GM_setValue
