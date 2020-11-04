@@ -8,13 +8,13 @@
 // @include       https://app.chatra.io/*
 // @include       http://*.app.chatra.io/*
 // @include       https://*.app.chatra.io/*
-// @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
-// @downloadURL   https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @require            https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version       3
+// @version 4
+// @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
+// @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
 
 GM_config.init(
