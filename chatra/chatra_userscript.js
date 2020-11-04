@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version       04112020
+// @version       2
 // ==/UserScript==
 
 GM_config.init(
