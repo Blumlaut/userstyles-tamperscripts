@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         schichtplaner
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @namespace    schichtplaner_online
+// @version      03112020
 // @description  adds "enter all/homeoffice/support" button for schichtplaner website
 // @author       Blumlaut
 // @match https://schichtplaner-online.de/dashboard/schedule/*
+// @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.js
 // @require     https://code.jquery.com/jquery-3.5.1.min.js
 // ==/UserScript==
 
