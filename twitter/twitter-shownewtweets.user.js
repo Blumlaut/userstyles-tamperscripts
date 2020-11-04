@@ -1,7 +1,6 @@
 // ==UserScript==
 // @name         Auto-Show new tweets on twitter timeline
 // @namespace    twitter_shownewtweets
-// @version      04112020
 // @author       Blumlaut
 // @match        https://twitter.com/*
 // @require     https://code.jquery.com/jquery-3.5.1.min.js
