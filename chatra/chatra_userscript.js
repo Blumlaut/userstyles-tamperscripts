@@ -2,8 +2,8 @@
 // @name          Chatra Improved: Dark
 // @namespace     http://userstyles.org
 // @description	  a
-// @author        Bluethefurry
-// @homepage      https://userstyles.org/styles/176459
+// @author        Blumlaut
+// @homepage      https://github.com/Blumlaut/userstyles-tamperscripts
 // @include       http://app.chatra.io/*
 // @include       https://app.chatra.io/*
 // @include       http://*.app.chatra.io/*
