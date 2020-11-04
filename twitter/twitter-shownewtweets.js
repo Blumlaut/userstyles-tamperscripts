@@ -17,7 +17,6 @@
     function timeout() {
         setTimeout(function () {
             var mydiv = document.querySelector('.css-901oao.r-1n1174f.r-1qd0xha.r-a023e6.r-16dba41.r-ad9z0x.r-bcqeeo.r-q4m81j.r-qvutc0');
-            console.log(mydiv)
 
             if (mydiv) {
                 mydiv.click();
