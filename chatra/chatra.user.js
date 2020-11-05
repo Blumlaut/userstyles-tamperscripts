@@ -12,10 +12,18 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 10
+// @version 11
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
+
+var awaitingAnswerPhrases = [
+    "moment",
+    "let me check",
+    "augenblick",
+    "warte kurz",
+    "sekunde"
+]
 
 GM_config.init({
     'id': 'Chatra_improved_dark', // The id used for this instance of GM_config
@@ -43,7 +51,7 @@ GM_config.init({
         'general-bg-color': {
             'label': 'General Background Color',
             'type': 'text',
-            'default': '#454545'
+            'default': '#454545',
         },
         'general-txt-color': {
             'label': 'General Text Color',
@@ -862,15 +870,17 @@ GM_config.init({
             if (GM_config.get('moment-warning') == true) {
                 var allChats = document.querySelectorAll(".nav-item.js-contact")
                 for (var i = 0; i < allChats.length; ++i) {
-                    if ((allChats[i].innerHTML.toLowerCase().indexOf("moment") !== -1) && (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1)) {
-                        var titleText = allChats[i].querySelector('.nav-item__title');
-                        titleText.appendChild(document.createTextNode("\xa0"));
-                        var elem = document.createElement("img");
-                        elem.classList.add("awaitingAnswer");
-                        elem.setAttribute("src", "https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/warning.png"); // Icon made by Freepik from www.flaticon.com
-                        elem.setAttribute("height", "13");
-                        elem.setAttribute("width", "13");
-                        titleText.appendChild(elem);
+                    for (var i_1 = 0; i_1 < awaitingAnswerPhrases.length; ++i_1) {
+                        if ((allChats[i].innerHTML.toLowerCase().indexOf(awaitingAnswerPhrases[i_1]) !== -1) && (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1)) {
+                            var titleText = allChats[i].querySelector('.nav-item__title');
+                            titleText.appendChild(document.createTextNode("\xa0"));
+                            var elem = document.createElement("img");
+                            elem.classList.add("awaitingAnswer");
+                            elem.setAttribute("src", "https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/warning.png"); // Icon made by Freepik from www.flaticon.com
+                            elem.setAttribute("height", "13");
+                            elem.setAttribute("width", "13");
+                            titleText.appendChild(elem);
+                        }
                     }
                 }
             }
