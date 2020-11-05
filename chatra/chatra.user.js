@@ -850,7 +850,7 @@ GM_config.init({
                     titleText.appendChild(document.createTextNode("\xa0"));
                     var elem = document.createElement("img");
                     elem.classList.add("awaitingAnswer");
-                    elem.setAttribute("src", "https://i.blumlaut.me/6r9hb/6atsw.png"); // Icon made by Freepik from www.flaticon.com
+                    elem.setAttribute("src", "https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/warning.png"); // Icon made by Freepik from www.flaticon.com
                     elem.setAttribute("height", "15");
                     elem.setAttribute("width", "15");
                     titleText.appendChild(elem);
