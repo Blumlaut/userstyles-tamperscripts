@@ -805,6 +805,9 @@ GM_config.init({
         "}",
         ".form-item__label {",
         "    color:" + GM_config.get('general-txt-color') + ";",
+        "}",
+        ".awaitingAnswer {",
+        "   display:block;",
         "}"
     ].join("\n");
     if (typeof GM_addStyle != "undefined") {
