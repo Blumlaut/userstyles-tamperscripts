@@ -868,8 +868,8 @@ GM_config.init({
                         var elem = document.createElement("img");
                         elem.classList.add("awaitingAnswer");
                         elem.setAttribute("src", "https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/warning.png"); // Icon made by Freepik from www.flaticon.com
-                        elem.setAttribute("height", "15");
-                        elem.setAttribute("width", "15");
+                        elem.setAttribute("height", "13");
+                        elem.setAttribute("width", "13");
                         titleText.appendChild(elem);
                     }
                 }
