@@ -12,7 +12,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 7
+// @version 8
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -116,6 +116,12 @@ GM_config.init({
             'label': 'Editing Colour',
             'type': 'text',
             'default': '#535353'
+        },
+        'moment-warning': {
+            'label': 'Enable "One Moment" Warning Icon',
+            'type': 'select',
+            'options': ['true', 'false'],
+            'default': 'true'
         },
     }
 });
@@ -846,17 +852,19 @@ GM_config.init({
 
     function LoopedThread() {
         setTimeout(function() {
-            var allChats = document.querySelectorAll(".nav-item.js-contact")
-            for (var i = 0; i < allChats.length; ++i) {
-                if ((allChats[i].innerHTML.toLowerCase().indexOf("moment") !== -1) && (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1)) {
-                    var titleText = allChats[i].querySelector('.nav-item__title');
-                    titleText.appendChild(document.createTextNode("\xa0"));
-                    var elem = document.createElement("img");
-                    elem.classList.add("awaitingAnswer");
-                    elem.setAttribute("src", "https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/warning.png"); // Icon made by Freepik from www.flaticon.com
-                    elem.setAttribute("height", "15");
-                    elem.setAttribute("width", "15");
-                    titleText.appendChild(elem);
+            if (GM_config.get('moment-warning') == "true") {
+                var allChats = document.querySelectorAll(".nav-item.js-contact")
+                for (var i = 0; i < allChats.length; ++i) {
+                    if ((allChats[i].innerHTML.toLowerCase().indexOf("moment") !== -1) && (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1)) {
+                        var titleText = allChats[i].querySelector('.nav-item__title');
+                        titleText.appendChild(document.createTextNode("\xa0"));
+                        var elem = document.createElement("img");
+                        elem.classList.add("awaitingAnswer");
+                        elem.setAttribute("src", "https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/warning.png"); // Icon made by Freepik from www.flaticon.com
+                        elem.setAttribute("height", "15");
+                        elem.setAttribute("width", "15");
+                        titleText.appendChild(elem);
+                    }
                 }
             }
 
