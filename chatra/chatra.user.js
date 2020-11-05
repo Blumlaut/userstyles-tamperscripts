@@ -36,13 +36,23 @@ GM_config.init({
         'moment-warning': {
             'label': 'Enable "One Moment" Warning Icon',
             'type': 'checkbox',
-            'default': 'true'
+            'default': true
         },
         'hide-location': {
             'label': 'Hide Locations',
             'type': 'select',
             'options': ['none', 'content'],
             'default': 'none'
+        },
+        'autoleave': {
+            'label': 'Autoleave Chats after Specified Time',
+            'type': 'checkbox',
+            'default': false
+        },
+        'autoleave-time': {
+            'label': 'Autoleave after Minutes: ',
+            'type': 'int',
+            'default': "11"
         },
         'section-colors': {
             'section': "Colors",
@@ -867,8 +877,8 @@ GM_config.init({
 
     function LoopedThread() {
         setTimeout(function() {
+            var allChats = document.querySelectorAll(".nav-item.js-contact")
             if (GM_config.get('moment-warning') == true) {
-                var allChats = document.querySelectorAll(".nav-item.js-contact")
                 for (var i = 0; i < allChats.length; ++i) {
                     for (var i_1 = 0; i_1 < awaitingAnswerPhrases.length; ++i_1) {
                         if ((allChats[i].innerHTML.toLowerCase().indexOf(awaitingAnswerPhrases[i_1]) !== -1)) {
@@ -895,6 +905,14 @@ GM_config.init({
                     }
                 }
             }
+            var headerText = document.querySelector('.superbutton__title-text')
+            if((headerText && headerText.innerText == " My") && (GM_config.get('autoleave') == true)) { // make sure we are in "My" tab
+                var latestChat = allChats[allChats.length - 1]; // get latest chat
+                if (latestChat !== undefined && (latestChat.querySelector(".nav-item__last-message-time").innerText == GM_config.get('autoleave-time')+" minutes")) { // check if latest chat exists, get last message time and compare with settings
+                    latestChat.querySelector(".nav-item__close-button-inner").click() // click!
+                }
+            }
+
 
             LoopedThread();
         }, 1000);
