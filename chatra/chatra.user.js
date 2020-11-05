@@ -12,7 +12,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 8
+// @version 9
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -119,8 +119,7 @@ GM_config.init({
         },
         'moment-warning': {
             'label': 'Enable "One Moment" Warning Icon',
-            'type': 'select',
-            'options': ['true', 'false'],
+            'type': 'checkbox',
             'default': 'true'
         },
     }
@@ -852,7 +851,7 @@ GM_config.init({
 
     function LoopedThread() {
         setTimeout(function() {
-            if (GM_config.get('moment-warning') == "true") {
+            if (GM_config.get('moment-warning') == true) {
                 var allChats = document.querySelectorAll(".nav-item.js-contact")
                 for (var i = 0; i < allChats.length; ++i) {
                     if ((allChats[i].innerHTML.toLowerCase().indexOf("moment") !== -1) && (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1)) {
