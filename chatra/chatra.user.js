@@ -12,7 +12,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 12
+// @version 13
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -887,7 +887,7 @@ GM_config.init({
                                 })
                             } else {
                                 var elem = allChats[i].querySelector(".awaitingAnswer")
-                                elem.style.display = "";
+                                elem.style = "";
                             }
 
 
