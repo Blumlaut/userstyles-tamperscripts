@@ -908,7 +908,7 @@ GM_config.init({
             var headerText = document.querySelector('.superbutton__title-text')
             if((headerText && headerText.innerText == " My") && (GM_config.get('autoleave') == true)) { // make sure we are in "My" tab
                 var latestChat = allChats[allChats.length - 1]; // get latest chat
-                if (latestChat !== undefined && (latestChat.querySelector(".nav-item__last-message-time").innerText == GM_config.get('autoleave-time')+" minutes")) { // check if latest chat exists, get last message time and compare with settings
+                if (latestChat !== undefined && (latestChat.querySelector(".nav-item__accent") && latestChat.querySelector(".nav-item__accent").innerText == "you:") && (latestChat.querySelector(".nav-item__last-message-time").innerText == GM_config.get('autoleave-time')+" minutes")) { // check if latest chat exists, get last message time and compare with settings
                     latestChat.querySelector(".nav-item__close-button-inner").click() // click!
                 }
             }
