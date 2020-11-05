@@ -841,4 +841,27 @@ GM_config.init({
 
     }, 3000);
 
+    function LoopedThread() {
+        setTimeout(function() {
+            var allChats = document.querySelectorAll(".nav-item.js-contact")
+            for (var i = 0; i < allChats.length; ++i) {
+                if ((allChats[i].innerHTML.indexOf("moment") !== -1) && (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1)) {
+                    var titleText = allChats[i].querySelector('.nav-item__title');
+                    titleText.appendChild(document.createTextNode("\xa0"));
+                    var elem = document.createElement("img");
+                    elem.classList.add("awaitingAnswer");
+                    elem.setAttribute("src", "https://i.blumlaut.me/6r9hb/6atsw.png"); // Icon made by Freepik from www.flaticon.com
+                    elem.setAttribute("height", "15");
+                    elem.setAttribute("width", "15");
+                    titleText.appendChild(elem);
+                }
+            }
+
+            LoopedThread();
+        }, 1000);
+    }
+    LoopedThread()
+
+
+
 })();
