@@ -12,7 +12,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 9
+// @version 10
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -21,7 +21,20 @@ GM_config.init({
     'id': 'Chatra_improved_dark', // The id used for this instance of GM_config
     'fields': // Fields object
     {
+        'moment-warning': {
+            'section': "Settings",
+            'label': 'Enable "One Moment" Warning Icon',
+            'type': 'checkbox',
+            'default': 'true'
+        },
+        'hide-location': {
+            'label': 'Hide Locations',
+            'type': 'select',
+            'options': ['none', 'content'],
+            'default': 'none'
+        },
         'general-bg-color': {
+            'section': "Colors",
             'label': 'General Background Color',
             'type': 'text',
             'default': '#454545'
@@ -30,12 +43,6 @@ GM_config.init({
             'label': 'General Text Color',
             'type': 'text',
             'default': '#DCDCDC'
-        },
-        'hide-location': {
-            'label': 'Hide Locations',
-            'type': 'select',
-            'options': ['none', 'content'],
-            'default': 'none'
         },
         'sidebar-text-color': {
             'label': 'Sidebar: Text Color',
@@ -116,11 +123,6 @@ GM_config.init({
             'label': 'Editing Colour',
             'type': 'text',
             'default': '#535353'
-        },
-        'moment-warning': {
-            'label': 'Enable "One Moment" Warning Icon',
-            'type': 'checkbox',
-            'default': 'true'
         },
     }
 });
