@@ -34,7 +34,7 @@ GM_config.init({
             'type': 'hidden',
         },
         'moment-warning': {
-            'label': 'Enable "One Moment" Warning Icon',
+            'label': 'Enable "One Moment" Warning Icon ( can be removed by clicking it )',
             'type': 'checkbox',
             'default': true
         },
@@ -53,6 +53,11 @@ GM_config.init({
             'label': 'Autoleave after Minutes: ',
             'type': 'int',
             'default': "11"
+        },
+        'autoleave-ignore-moment': {
+            'label': 'Autoleave: Don\'t leave when "One Moment" Warning is set?',
+            'type': 'checkbox',
+            'default': true
         },
         'section-colors': {
             'section': "Colors",
@@ -905,11 +910,20 @@ GM_config.init({
                     }
                 }
             }
+
+            var latestChat = allChats[allChats.length - 1]; // get latest chat
             var headerText = document.querySelector('.superbutton__title-text')
-            if((headerText && headerText.innerText == " My") && (GM_config.get('autoleave') == true)) { // make sure we are in "My" tab
-                var latestChat = allChats[allChats.length - 1]; // get latest chat
-                if (latestChat !== undefined && (latestChat.querySelector(".nav-item__accent") && latestChat.querySelector(".nav-item__accent").innerText == "you:") && (latestChat.querySelector(".nav-item__last-message-time").innerText == GM_config.get('autoleave-time')+" minutes")) { // check if latest chat exists, get last message time and compare with settings
-                    latestChat.querySelector(".nav-item__close-button-inner").click() // click!
+            if (latestChat) {
+                var awaitingAnswerElement = latestChat.querySelector(".awaitingAnswer")
+            }
+
+            if((latestChat && headerText && headerText.innerText == " My") && (GM_config.get('autoleave') == true)) { // make sure we are in "My" tab
+                if ((latestChat.querySelector(".nav-item__accent") && latestChat.querySelector(".nav-item__accent").innerText == "you:") && (latestChat.querySelector(".nav-item__last-message-time").innerText == GM_config.get('autoleave-time')+" minutes")) { // check if latest chat exists, get last message time and compare with settings
+                    if (GM_config.get('autoleave-ignore-moment') == false ) {
+                        latestChat.querySelector(".nav-item__close-button-inner").click()
+                    } else if ( ( GM_config.get('autoleave-ignore-moment') == true) && ((awaitingAnswerElement == undefined) || awaitingAnswerElement.style.display == "none")) {
+                        latestChat.querySelector(".nav-item__close-button-inner").click()
+                    }
                 }
             }
 
