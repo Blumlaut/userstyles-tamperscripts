@@ -12,7 +12,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 11
+// @version 12
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -871,15 +871,26 @@ GM_config.init({
                 var allChats = document.querySelectorAll(".nav-item.js-contact")
                 for (var i = 0; i < allChats.length; ++i) {
                     for (var i_1 = 0; i_1 < awaitingAnswerPhrases.length; ++i_1) {
-                        if ((allChats[i].innerHTML.toLowerCase().indexOf(awaitingAnswerPhrases[i_1]) !== -1) && (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1)) {
+                        if ((allChats[i].innerHTML.toLowerCase().indexOf(awaitingAnswerPhrases[i_1]) !== -1)) {
                             var titleText = allChats[i].querySelector('.nav-item__title');
-                            titleText.appendChild(document.createTextNode("\xa0"));
-                            var elem = document.createElement("img");
-                            elem.classList.add("awaitingAnswer");
-                            elem.setAttribute("src", "https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/warning.png"); // Icon made by Freepik from www.flaticon.com
-                            elem.setAttribute("height", "13");
-                            elem.setAttribute("width", "13");
-                            titleText.appendChild(elem);
+                            if (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1) {
+                                titleText.appendChild(document.createTextNode("\xa0"));
+                                var elem = document.createElement("img");
+                                elem.classList.add("awaitingAnswer");
+                                elem.setAttribute("src", "https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/warning.png"); // Icon made by Freepik from www.flaticon.com
+                                elem.setAttribute("height", "13");
+                                elem.setAttribute("width", "13");
+                                elem.removeAttribute("href")
+                                titleText.appendChild(elem);
+                                $(elem).click(function() {
+                                    this.style.display = "none";
+                                })
+                            } else {
+                                var elem = allChats[i].querySelector(".awaitingAnswer")
+                                elem.style.display = "";
+                            }
+
+
                         }
                     }
                 }
