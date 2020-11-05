@@ -1,6 +1,6 @@
 ## Chatra Theme
 
-A Theme for the Chatra Backend that makes the spaces between elements smaller so more chats fit, it also makes it dark.
+A Theme for the Chatra Backend that changes the UI to be more compact and integrates a Dark Mode, fully configurable.
 
 **Always use the chatra.user.js file, the css is only kept for reference!**
 
