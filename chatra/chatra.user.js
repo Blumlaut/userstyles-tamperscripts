@@ -21,8 +21,11 @@ GM_config.init({
     'id': 'Chatra_improved_dark', // The id used for this instance of GM_config
     'fields': // Fields object
     {
-        'moment-warning': {
+        'section-settings': {
             'section': "Settings",
+            'type': 'hidden',
+        },
+        'moment-warning': {
             'label': 'Enable "One Moment" Warning Icon',
             'type': 'checkbox',
             'default': 'true'
@@ -33,8 +36,11 @@ GM_config.init({
             'options': ['none', 'content'],
             'default': 'none'
         },
-        'general-bg-color': {
+        'section-colors': {
             'section': "Colors",
+            'type': 'hidden',
+        },
+        'general-bg-color': {
             'label': 'General Background Color',
             'type': 'text',
             'default': '#454545'
