@@ -17,6 +17,9 @@
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
 
+
+var WarningIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAbsAAAG7AEedTg1AAAAB3RJTUUH5AsFEAUf7VZo1wAABIlJREFUWMPF102MXWUdx/HP85xz3+cOM6WAKAr1rUiLGk2k2kZkYUPAaEI0RAzS4grEF9Lu3ODCBb7GpQlGFiYkJmBMTHTpEim+LNSNEaGZmdoW2jKd6czc8/K4uLfT26ade1sk/lbn5Nzzf/2e//O//J8VrvaFRTshBLYNpFuOGcSKxZZwsibd5d9vXwAj5z0cxMFCum3RIJbS0cizUXgmcXafV//3AYycN/FdHIpCg+iYDasqtVQGftoQvlOzsXfKIKYKYOQcPo9fZrL+rJ5MdMqyFaWTCoW0Gnmk4vmOaJp2xKvowA04HOjP6GhrCIKAruh6uUAvcaghvKOQpjI6MYCx7A9gb1NTW1NCUKFC0pPpyST2VNKjLzjlRbe9tRaMOb8Tv4nijjl9TbnU6zi35yPeqNbkR/4oW12xjiUDlXQ0E76QpL/eommHf76lFjTxLezoaGnKCcHZx77s9Z99z4mnf+DNA1+TYqYluE4G76mlJ3OhtaS4thaMZb8fX8plutqg7nWt33OX1G5KzZa1T+xRd7tIZmVaosQDpXRfKXnJjmuuwHYcxmxPRyYiEQNZNvpJGo6lMOxmLpiTCcwkDuXCjYMtgLxsAGPZfxX7WiPwLla64u3MBSA/WUkH/2XNi1eowlYV2IWvRyHraY8+uOkUMCeXCTHx2Pt0PlyobbhzcgCj7Bv4Jt7b0dbUmNr5ebUvAHlrLX07F1p/cnbrAMZK/1k8OA7etWgMyC+W0r2F5MglrbhcC643BO+6C+Bdm8aA7I+AvGHjEnY2rY9l/zA+fXnwxhUuvr4CImNA7q2lR44rLgLy0vQ+ZCJ4QdgYiK+fJotSlsmW3xSKyw+cIZCZTIg1j9+ksbtQbz7PxrJv4Cns72pv2ftQlbKlE8rt2xSvvGb2F89oHH3VlcqQC2qsq+fRagq/f9Rc9XNnhLHS34vnctncvL5MZmvVymbulLPqwTmTZlopOaawoV6OfKXmt11x861thuDNdbWncJ6k/oxi106DO+5Q92eZcPyOATmbOJwL2zck+ej5Q7i7paGjNdF59e6bnXnqG1b3fMzJ07XGS0ds+/HT8oWjW1ZiRmZFbVW1r5YePqP6ScRuPBGFvKczxcQLVg48YO3+z0j9rrrTsXr3PZYffGhiGwLmh0BmNY/Pyz8aDY/anW2tqSZeajUNdn9gWPKElEjJ4IO3S+3JQ6stmh22+P219GTE56I49cQLg0L+2tLm6TecAUFjcUEYDKay0ZfJBYn7I7ZHYYzHSSWozDz7gubLfyMlQdL6x9/1f/UcdTmViVwY4si2sGjnQhTeNW9WY5PJiVGo3nmTcx/f5Y1qXf6XP8uPLZpmyQ5Yl86vbsdzPF9LT6xYi33dISJTmMmW/qO7tGDdskoyzXaXUEhOK1VSCvw6x49w+4bB/lIpl02dSSk5rlJKhtvx5AAGaoUk8IcofP/8JLwVh3Cf4Ro22r22ViGFRYMwMjiNapwK/C4KP6ykVwKbZ0GOm3Hj6HpiQqUUlgyycliQSQEHUhGEExkLifJTV/Ef8m3TfwFgEIPcJhzE4wAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0xMS0wNVQxNjowNTozMS0wNTowMNb86m0AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMTEtMDVUMTY6MDU6MzEtMDU6MDCnoVLRAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg=="
+
 var awaitingAnswerPhrases = [
     "moment",
     "let me check",
@@ -892,7 +895,7 @@ GM_config.init({
                                 titleText.appendChild(document.createTextNode("\xa0"));
                                 var elem = document.createElement("img");
                                 elem.classList.add("awaitingAnswer");
-                                elem.setAttribute("src", "https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/warning.png"); // Icon made by Freepik from www.flaticon.com
+                                elem.setAttribute("src", WarningIcon); // Icon made by Freepik from www.flaticon.com
                                 elem.setAttribute("height", "13");
                                 elem.setAttribute("width", "13");
                                 elem.removeAttribute("href")
