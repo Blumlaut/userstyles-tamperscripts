@@ -845,7 +845,7 @@ GM_config.init({
         setTimeout(function() {
             var allChats = document.querySelectorAll(".nav-item.js-contact")
             for (var i = 0; i < allChats.length; ++i) {
-                if ((allChats[i].innerHTML.indexOf("moment") !== -1) && (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1)) {
+                if ((allChats[i].innerHTML.toLowerCase().indexOf("moment") !== -1) && (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1)) {
                     var titleText = allChats[i].querySelector('.nav-item__title');
                     titleText.appendChild(document.createTextNode("\xa0"));
                     var elem = document.createElement("img");
