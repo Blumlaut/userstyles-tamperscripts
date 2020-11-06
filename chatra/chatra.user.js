@@ -12,7 +12,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 16
+// @version 17
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -55,7 +55,7 @@ GM_config.init({
             'default': 'none'
         },
         'autoleave': {
-            'label': 'Autoleave Chats after Specified Time',
+            'label': 'Autoleave Chats after Specified Time (HIGHLY EXPERIMENTAL/UNSTABLE)',
             'type': 'checkbox',
             'default': false
         },
