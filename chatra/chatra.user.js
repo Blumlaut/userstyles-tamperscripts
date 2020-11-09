@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 19
+// @version 20
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -980,7 +980,7 @@ GM_config.init({
 
             if (window.location.href.includes("zap-hosting.com")&&window.location.href.includes("&autoLogin=true")) {
                 for (const a of document.querySelectorAll("a")) {
-                    if (a.textContent.includes("Als Kunde") || a.textContent.includes("Als Kunde einloggen")) {
+                    if (a.textContent.includes("Kunde einloggen") || a.textContent.includes("Als Kunde einloggen")) {
                         window.location.replace(a.href)
                         return
                     }
@@ -996,7 +996,8 @@ GM_config.init({
             if (window.location.href.includes("zap-hosting.com")&&window.location.href.includes("&autoLogin=true")) {
                 // ../customer/index.php?userLogin=
                 for (const a of document.querySelectorAll("a")) {
-                    if (a.textContent.includes("Als Kunde") || a.textContent.includes("Als Kunde einloggen")) {
+                    if (a.textContent.includes("Kunde einloggen") || a.textContent.includes("Als Kunde einloggen")) {
+                        console.log(a)
                         window.location.replace(a.href)
                         return
                     }
