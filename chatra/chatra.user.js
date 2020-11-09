@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 18
+// @version 19
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -958,7 +958,7 @@ GM_config.init({
 
                             var elem = document.createElement("btn");
                             elem.classList.add("button");
-                            elem.classList.add("button--white")
+                            elem.classList.add("button--chtr-o")
                             elem.classList.add("loginAsButton")
                             var elemInner = document.createElement("span")
                             elemInner.classList.add("button__inner")
