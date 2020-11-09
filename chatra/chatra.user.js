@@ -8,11 +8,12 @@
 // @include       https://app.chatra.io/*
 // @include       http://*.app.chatra.io/*
 // @include       https://*.app.chatra.io/*
+// @include       https://zap-hosting.com/*/administrator/index.php?module=customer*autoLogin=true
 // @require            https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 17
+// @version 18
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -856,90 +857,132 @@ GM_config.init({
         "   display:block;",
         "}"
     ].join("\n");
-    if (typeof GM_addStyle != "undefined") {
-        GM_addStyle(css);
-    } else if (typeof PRO_addStyle != "undefined") {
-        PRO_addStyle(css);
-    } else if (typeof addStyle != "undefined") {
-        addStyle(css);
-    } else {
-        var node = document.createElement("style");
-        node.type = "text/css";
-        node.appendChild(document.createTextNode(css));
-        var heads = document.getElementsByTagName("head");
-        if (heads.length > 0) {
-            heads[0].appendChild(node);
+    if (window.location.href.includes("chatra")) {
+        if (typeof GM_addStyle != "undefined") {
+            GM_addStyle(css);
+        } else if (typeof PRO_addStyle != "undefined") {
+            PRO_addStyle(css);
+        } else if (typeof addStyle != "undefined") {
+            addStyle(css);
         } else {
-            document.documentElement.appendChild(node);
+            var node = document.createElement("style");
+            node.type = "text/css";
+            node.appendChild(document.createTextNode(css));
+            var heads = document.getElementsByTagName("head");
+            if (heads.length > 0) {
+                heads[0].appendChild(node);
+            } else {
+                document.documentElement.appendChild(node);
+            }
         }
     }
-
     setTimeout(function() {
+        if (window.location.href.includes("chatra")) {
+            var superNavItems = document.querySelectorAll('.super-nav-section');
+            var ChatInputTip = superNavItems[superNavItems.length - 2];
 
-        var superNavItems = document.querySelectorAll('.super-nav-section');
-        var ChatInputTip = superNavItems[superNavItems.length - 2];
-
-        var btn = document.createElement("BUTTON");
-        btn.classList.add("super-nav__item")
-        var text = document.createTextNode("Theme Settings");
-        btn.appendChild(text);
-        ChatInputTip.appendChild(btn);
-        btn.addEventListener("click", function() {
-            GM_config.open();
-        })
+            var btn = document.createElement("BUTTON");
+            btn.classList.add("super-nav__item")
+            var text = document.createTextNode("Theme Settings");
+            btn.appendChild(text);
+            ChatInputTip.appendChild(btn);
+            btn.addEventListener("click", function() {
+                GM_config.open();
+            })
+        }
 
     }, 3000);
 
     function LoopedThread() {
         setTimeout(function() {
-            var allChats = document.querySelectorAll(".nav-item.js-contact")
-            if (GM_config.get('moment-warning') == true) {
-                allChatsLoop: for (var i = 0; i < allChats.length; ++i) {
+            if (window.location.href.includes("chatra")) {
+                var allChats = document.querySelectorAll(".nav-item.js-contact")
+                if (GM_config.get('moment-warning') == true) {
+                    allChatsLoop: for (var i = 0; i < allChats.length; ++i) {
 
-                    ignoredPhrasesLoop: for (var i_a = 0; i_a < ignoredPhrases.length; ++i_a) {
-                        if (allChats[i].innerHTML.toLowerCase().indexOf(ignoredPhrases[i_a]) !== -1) {
-                            continue allChatsLoop;
+                        ignoredPhrasesLoop: for (var i_a = 0; i_a < ignoredPhrases.length; ++i_a) {
+                            if (allChats[i].innerHTML.toLowerCase().indexOf(ignoredPhrases[i_a]) !== -1) {
+                                continue allChatsLoop;
+                            }
+                        }
+
+                        awaitingAnswerPhrasesLoop: for (var i_1 = 0; i_1 < awaitingAnswerPhrases.length; ++i_1) {
+                            if ((allChats[i].innerHTML.toLowerCase().indexOf(awaitingAnswerPhrases[i_1]) !== -1)) {
+                                var titleText = allChats[i].querySelector('.nav-item__title');
+                                if (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1) {
+                                    titleText.appendChild(document.createTextNode("\xa0"));
+                                    var elem = document.createElement("img");
+                                    elem.classList.add("awaitingAnswer");
+                                    elem.setAttribute("src", WarningIcon); // Icon made by Freepik from www.flaticon.com
+                                    elem.setAttribute("height", "13");
+                                    elem.setAttribute("width", "13");
+                                    elem.removeAttribute("href")
+                                    titleText.appendChild(elem);
+                                    $(elem).click(function() {
+                                        this.style.display = "none";
+                                    })
+                                } else {
+                                    var elem = allChats[i].querySelector(".awaitingAnswer")
+                                    elem.style = "";
+                                }
+
+
+                            }
                         }
                     }
+                }
 
-                    awaitingAnswerPhrasesLoop: for (var i_1 = 0; i_1 < awaitingAnswerPhrases.length; ++i_1) {
-                        if ((allChats[i].innerHTML.toLowerCase().indexOf(awaitingAnswerPhrases[i_1]) !== -1)) {
-                            var titleText = allChats[i].querySelector('.nav-item__title');
-                            if (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1) {
-                                titleText.appendChild(document.createTextNode("\xa0"));
-                                var elem = document.createElement("img");
-                                elem.classList.add("awaitingAnswer");
-                                elem.setAttribute("src", WarningIcon); // Icon made by Freepik from www.flaticon.com
-                                elem.setAttribute("height", "13");
-                                elem.setAttribute("width", "13");
-                                elem.removeAttribute("href")
-                                titleText.appendChild(elem);
-                                $(elem).click(function() {
-                                    this.style.display = "none";
-                                })
-                            } else {
-                                var elem = allChats[i].querySelector(".awaitingAnswer")
-                                elem.style = "";
-                            }
+                var latestChat = allChats[allChats.length - 1]; // get latest chat
+                var headerText = document.querySelector('.superbutton__title-text')
+                if (latestChat) {
+                    var awaitingAnswerElement = latestChat.querySelector(".awaitingAnswer")
+                    }
 
+                if((latestChat && headerText && headerText.innerText == " My") && (GM_config.get('autoleave') == true)) { // make sure we are in "My" tab
+                    if ((latestChat.querySelector(".nav-item__accent") && latestChat.querySelector(".nav-item__accent").innerText == "you:") && (latestChat.querySelector(".nav-item__last-message-time").innerText == GM_config.get('autoleave-time')+" minutes")) { // check if latest chat exists, get last message time and compare with settings
+                        if (GM_config.get('autoleave-ignore-moment') == false ) {
+                            latestChat.querySelector(".nav-item__close-button-inner").click()
+                        } else if ( ( GM_config.get('autoleave-ignore-moment') == true) && ((awaitingAnswerElement == undefined) || awaitingAnswerElement.style.display == "none")) {
+                            latestChat.querySelector(".nav-item__close-button-inner").click()
+                        }
+                    }
+                }
+
+                var Knr = contains("h1", "Kundennummer")
+                if(Knr) {
+                    for (var i = 0; i < Knr.length; ++i) {
+                        if (Knr[i].parentElement.innerHTML.indexOf("loginAsButton") == -1) {
+                            var parent = Knr[i].parentElement;
+                            var nextSibling = Knr[i].nextSibling.nextSibling
+                            var customerId = nextSibling.innerText.substring(nextSibling.innerText.indexOf("zap")+3,nextSibling.innerText.lastIndexOf(" ("))
+
+                            var elem = document.createElement("btn");
+                            elem.classList.add("button");
+                            elem.classList.add("button--white")
+                            elem.classList.add("loginAsButton")
+                            var elemInner = document.createElement("span")
+                            elemInner.classList.add("button__inner")
+                            elemInner.innerText = "Login as Customer"
+                            elem.appendChild(elemInner)
+                            // elem.removeAttribute("href")
+                            parent.appendChild(elem);
+
+                            $(elem).click(function() {
+                                //console.log('https://zap-hosting.com/de/customer/index.php?userLogin='+customerId)
+                                window.open("https://zap-hosting.com/en/administrator/index.php?module=customer&page=show&customer_id="+customerId+"&show=profile&autoLogin=true")
+                            })
+                            //elem2.setAttribute("href", "https://zap-hosting.com/de/customer/index.php?userLogin="+userid)
 
                         }
                     }
                 }
             }
 
-            var latestChat = allChats[allChats.length - 1]; // get latest chat
-            var headerText = document.querySelector('.superbutton__title-text')
-            if (latestChat) {
-                var awaitingAnswerElement = latestChat.querySelector(".awaitingAnswer")
-                }
-
-            if((latestChat && headerText && headerText.innerText == " My") && (GM_config.get('autoleave') == true)) { // make sure we are in "My" tab
-                if ((latestChat.querySelector(".nav-item__accent") && latestChat.querySelector(".nav-item__accent").innerText == "you:") && (latestChat.querySelector(".nav-item__last-message-time").innerText == GM_config.get('autoleave-time')+" minutes")) { // check if latest chat exists, get last message time and compare with settings
-                    if (GM_config.get('autoleave-ignore-moment') == false ) {
-                        latestChat.querySelector(".nav-item__close-button-inner").click()
-                    } else if ( ( GM_config.get('autoleave-ignore-moment') == true) && ((awaitingAnswerElement == undefined) || awaitingAnswerElement.style.display == "none")) {
-                        latestChat.querySelector(".nav-item__close-button-inner").click()
+            if (window.location.href.includes("zap-hosting.com")&&window.location.href.includes("&autoLogin=true")) {
+                for (const a of document.querySelectorAll("a")) {
+                    if (a.textContent.includes("Als Kunde") || a.textContent.includes("Als Kunde einloggen")) {
+                        window.location.replace(a.href)
+                        return
                     }
                 }
             }
@@ -947,9 +990,29 @@ GM_config.init({
 
             LoopedThread();
         }, 1000);
+
+        setTimeout(function() {
+            // if possible, be faster.
+            if (window.location.href.includes("zap-hosting.com")&&window.location.href.includes("&autoLogin=true")) {
+                // ../customer/index.php?userLogin=
+                for (const a of document.querySelectorAll("a")) {
+                    if (a.textContent.includes("Als Kunde") || a.textContent.includes("Als Kunde einloggen")) {
+                        window.location.replace(a.href)
+                        return
+                    }
+                }
+            }
+
+        }, 300);
+
     }
     LoopedThread()
 
-
+    function contains(selector, text) {
+        var elements = document.querySelectorAll(selector);
+        return Array.prototype.filter.call(elements, function(element){
+            return RegExp(text).test(element.textContent);
+        });
+    }
 
 })();
