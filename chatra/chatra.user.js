@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 21
+// @version 22
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -978,37 +978,23 @@ GM_config.init({
                 }
             }
 
-            if (window.location.href.includes("zap-hosting.com")&&window.location.href.includes("&autoLogin=true")) {
-                for (const a of document.querySelectorAll("a")) {
-                    if (a.innerHTML.includes(`&nbsp;&nbsp;Als Kunde
-einloggen`)) {
-                        window.location.replace(a.href)
-                        return
-                    }
-                }
-            }
-
-
             LoopedThread();
         }, 1000);
-
-        setTimeout(function() {
-            // if possible, be faster.
-            if (window.location.href.includes("zap-hosting.com")&&window.location.href.includes("&autoLogin=true")) {
-                // ../customer/index.php?userLogin=
-                for (const a of document.querySelectorAll("a")) {
-                    if (a.textContent.includes(`&nbsp;&nbsp;Als Kunde
-einloggen`)) {
-                        window.location.replace(a.href)
-                        return
-                    }
-                }
-            }
-
-        }, 300);
-
     }
     LoopedThread()
+
+    // if possible, be faster.
+    if (window.location.href.includes("zap-hosting.com")&&window.location.href.includes("&autoLogin=true")) {
+        function findLoginHref() {
+            var a = document.querySelector("a[href^='../customer/index.php?userLogin=']")
+            if (a) {
+                window.location.replace(a.href)
+            } else {
+                setTimeout(findLoginHref, 10)
+            }
+        }
+        findLoginHref()
+    }
 
     function contains(selector, text) {
         var elements = document.querySelectorAll(selector);
