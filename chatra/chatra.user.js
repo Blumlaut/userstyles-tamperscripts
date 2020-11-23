@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 23
+// @version 24
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -165,9 +165,14 @@ GM_config.init({
             'default': '#535353'
         },
         'note-txt-color': {
-            'label': 'Note Text Colour',
+            'label': 'Note Input Text Colour',
             'type': 'text',
             'default': '#f6ff4c'
+        },
+        'note-bg-color': {
+            'label': 'Note Background Colour',
+            'type': 'text',
+            'default': '#5e5b2c'
         }
     }
 });
@@ -863,6 +868,9 @@ GM_config.init({
         "}",
         ".chat-textarea.is-note {",
         "  color: "+ GM_config.get('note-txt-color') +";",
+        "}",
+        ".chat-message.chat-message--note.is-operator {",
+        "  background-color: "+ GM_config.get('note-bg-color') +";",
         "}"
     ].join("\n");
     if (window.location.href.includes("chatra")) {
