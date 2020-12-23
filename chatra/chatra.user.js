@@ -173,6 +173,11 @@ GM_config.init({
             'label': 'Note Background Colour',
             'type': 'text',
             'default': '#5e5b2c'
+        },
+        'navitem-border-radius': {
+            'label': 'Chat Border Radius (pixels)',
+            'type': 'int',
+            'default': '0'
         }
     }
 });
@@ -610,8 +615,14 @@ GM_config.init({
         " .nav-item {",
         "    background-color:" + GM_config.get('new-background-color') + ";",
         "    border-bottom:0px;",
+        "    border-radius:"+ GM_config.get('navitem-border-radius') +"px;",
+        "    margin: 0 0px 0px !important;",
         "}",
-        "",
+        ".nav-item__inner {",
+        "    border-bottom:0px;",
+        "    border-radius:"+ GM_config.get('navitem-border-radius') +"px;",
+        "    margin: 0 0px 0px !important;",
+        "}",
         ".nav-item .nav-item__inner:after {",
         " background-image:-webkit-linear-gradient(left," + GM_config.get('attended-color') + "," + GM_config.get('attended-color') + ");",
         " background-image:linear-gradient(90deg," + GM_config.get('attended-color') + "," + GM_config.get('attended-color') + ")",
@@ -897,7 +908,8 @@ GM_config.init({
         "}",
         ".nav__item-text {",
         "color: "+ GM_config.get('general-txt-color') + " !important;",
-        "}"
+        "}",
+
     ].join("\n");
     if (window.location.href.includes("chatra")) {
         if (typeof GM_addStyle != "undefined") {
