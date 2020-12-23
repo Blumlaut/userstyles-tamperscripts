@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 27
+// @version 28
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -914,7 +914,9 @@ GM_config.init({
         ".nav__item-text {",
         "color: "+ GM_config.get('general-txt-color') + " !important;",
         "}",
-
+        ".nav-item:before {",
+        "content: none!important;",
+        "}"
     ].join("\n");
     if (window.location.href.includes("chatra")) {
         if (typeof GM_addStyle != "undefined") {
