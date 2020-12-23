@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 26
+// @version 27
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -178,6 +178,11 @@ GM_config.init({
             'label': 'Chat Border Radius (pixels)',
             'type': 'int',
             'default': '0'
+        },
+        "sidebar-chat-padding": {
+            'label': 'Sidebar Upper&Lower Chat Padding (pixels)',
+            'type': 'int',
+            'default': '5'
         }
     }
 });
@@ -400,7 +405,7 @@ GM_config.init({
         "      display:-webkit-box;",
         "      display:-ms-flexbox;",
         "      display:flex;",
-        "      padding:5px 1rem;",
+        "      padding:"+ GM_config.get('sidebar-chat-padding') +"px 1rem;",
         "      -ms-touch-action:pan-y;",
         "      touch-action:pan-y",
         "  }",
