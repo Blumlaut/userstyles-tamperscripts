@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 25
+// @version 26
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -411,6 +411,9 @@ GM_config.init({
         "  .nav-item__last-message {",
         "      font-size:13px;",
         "  }",
+        ".flex__item.ellipsis {",
+        "color: "+ GM_config.get('general-txt-color') + ";",
+        "}",
         "  .chat-aside {",
         "      height:100%;",
         "      position:relative;",
@@ -598,6 +601,9 @@ GM_config.init({
         "}",
         "",
         ".nav-item__last-message {",
+        "    color:" + GM_config.get('sidebar-text-color') + ";",
+        "}",
+        ".nav-item__last-message-text {",
         "    color:" + GM_config.get('sidebar-text-color') + ";",
         "}",
         "",
@@ -871,6 +877,26 @@ GM_config.init({
         "}",
         ".chat-message.chat-message--note.is-operator {",
         "  background-color: "+ GM_config.get('note-bg-color') +";",
+        "}",
+        ".nav-wrapper__header {",
+        "color: "+ GM_config.get('general-txt-color') + ";",
+        " background-color: "+ GM_config.get('general-bg-color') + ";",
+        "}",
+        ".button-block__tab {",
+        "color: "+ GM_config.get('general-txt-color') + ";",
+        "}",
+        ".tab-button.is-active {",
+        "color: "+ GM_config.get('general-txt-color') + " !important;",
+        "font-weight: normal!important;",
+        "}",
+        ".button__count.count.count--nav.test-unread-count {",
+        "color: "+ GM_config.get('general-txt-color') + " !important;",
+        "}",
+        ".nav__title {",
+        "color: "+ GM_config.get('general-txt-color') + " !important;",
+        "}",
+        ".nav__item-text {",
+        "color: "+ GM_config.get('general-txt-color') + " !important;",
         "}"
     ].join("\n");
     if (window.location.href.includes("chatra")) {
