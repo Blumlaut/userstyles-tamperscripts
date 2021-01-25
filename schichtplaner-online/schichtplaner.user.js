@@ -6,7 +6,7 @@
 // @match https://schichtplaner-online.de/dashboard/schedule/*
 // @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // @require     https://code.jquery.com/jquery-3.5.1.min.js
-// @version       1
+// @version       2
 // @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // @downloadURL   https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // ==/UserScript==
@@ -16,11 +16,11 @@
 
     var ButtonTypes = [
         [
-            "HomeOffice",
+            "HOMEOFFICE",
             "btn-warning"
         ],
         [
-            "Support",
+            "SUPPORT",
             "btn-success"
         ],
         [
@@ -48,11 +48,11 @@
         };
 
         // flexible mode
-        var allDays = document.querySelectorAll(".dayShiftItemHead")
+        var allDays = document.querySelectorAll(".dayShiftItem")
         for (var i = 0; i < allDays.length; ++i) {
             if(allDays[i].innerHTML.indexOf(filter) !== -1) {
-                var checkIn = allDays[i].querySelector('.fTooltip');
-                if (checkIn != null && allDays[i].innerHTML.indexOf("nicht eingetragen") !== -1) {
+                var checkIn = allDays[i].querySelector('.action_container');
+                if (checkIn != null && allDays[i].innerHTML.indexOf("EINTRAGEN") !== -1) {
                     checkIn.click();
                 }
             }
@@ -62,7 +62,7 @@
 
 
     // generate button
-    var mydiv = document.querySelector('.pull-right');
+    var mydiv = document.querySelector('.live_head_item').parentNode;
 
     for (var i = 0; i < ButtonTypes.length; ++i) {
         var btn = document.createElement("BUTTON" );
