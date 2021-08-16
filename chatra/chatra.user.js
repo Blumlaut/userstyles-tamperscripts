@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 29
+// @version 30
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -1021,8 +1021,9 @@ GM_config.init({
                         if (Knr[i].parentElement.innerHTML.indexOf("loginAsButton") == -1) {
                             var parent = Knr[i].parentElement;
                             var nextSibling = Knr[i].nextSibling.nextSibling
-                            var customerId = nextSibling.innerText.substring(nextSibling.innerText.indexOf("zap")+3,nextSibling.innerText.lastIndexOf(" ("))
-                            if (customerId != "") {
+                            console.log(nextSibling.innerText.substring(nextSibling.innerText.indexOf("(")+1,nextSibling.innerText.lastIndexOf(")")));
+                            var customerURL = nextSibling.innerText.substring(nextSibling.innerText.indexOf("(")+1,nextSibling.innerText.lastIndexOf(")"))
+                            if (customerURL != "") {
                                 var elem = document.createElement("btn");
                                 elem.classList.add("button");
                                 elem.classList.add("button--chtr-o")
@@ -1036,7 +1037,7 @@ GM_config.init({
 
                                 $(elem).click(function() {
                                     //console.log('https://zap-hosting.com/de/customer/index.php?userLogin='+customerId)
-                                    window.open("https://zap-hosting.com/en/administrator/index.php?module=customer&page=show&customer_id="+customerId+"&show=profile&autoLogin=true")
+                                    window.open(customerURL+"&show=profile&autoLogin=true")
                                 })
                             }
                             //elem2.setAttribute("href", "https://zap-hosting.com/de/customer/index.php?userLogin="+userid)
