@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 30
+// @version 31
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -932,7 +932,7 @@ GM_config.init({
         } else if (typeof addStyle != "undefined") {
             addStyle(css);
         } else {
-            var node = document.createElement("style");
+            let node = document.createElement("style");
             node.type = "text/css";
             node.appendChild(document.createTextNode(css));
             var heads = document.getElementsByTagName("head");
@@ -948,9 +948,9 @@ GM_config.init({
             var superNavItems = document.querySelectorAll('.super-nav-section');
             var ChatInputTip = superNavItems[superNavItems.length - 2];
 
-            var btn = document.createElement("BUTTON");
+            let btn = document.createElement("BUTTON");
             btn.classList.add("super-nav__item")
-            var text = document.createTextNode("Theme Settings");
+            let text = document.createTextNode("Theme Settings");
             btn.appendChild(text);
             ChatInputTip.appendChild(btn);
             btn.addEventListener("click", function() {
@@ -978,7 +978,7 @@ GM_config.init({
                                 var titleText = allChats[i].querySelector('.nav-item__title');
                                 if (allChats[i].innerHTML.indexOf("awaitingAnswer") == -1) {
                                     titleText.appendChild(document.createTextNode("\xa0"));
-                                    var elem = document.createElement("img");
+                                    let elem = document.createElement("img");
                                     elem.classList.add("awaitingAnswer");
                                     elem.setAttribute("src", WarningIcon); // Icon made by Freepik from www.flaticon.com
                                     elem.setAttribute("height", "13");
@@ -989,7 +989,7 @@ GM_config.init({
                                         this.style.display = "none";
                                     })
                                 } else {
-                                    var elem = allChats[i].querySelector(".awaitingAnswer")
+                                    let elem = allChats[i].querySelector(".awaitingAnswer")
                                     elem.style = "";
                                 }
 
@@ -1019,15 +1019,15 @@ GM_config.init({
                 if(Knr) {
                     for (var i = 0; i < Knr.length; ++i) {
                         if (Knr[i].parentElement.innerHTML.indexOf("loginAsButton") == -1) {
-                            var parent = Knr[i].parentElement;
-                            var nextSibling = Knr[i].nextSibling.nextSibling
-                            var customerURL = nextSibling.innerText.substring(nextSibling.innerText.indexOf("(")+1,nextSibling.innerText.lastIndexOf(")"))
+                            let parent = Knr[i].parentElement;
+                            let nextSibling = Knr[i].nextSibling.nextSibling
+                            let customerURL = nextSibling.innerText.substring(nextSibling.innerText.indexOf("(")+1,nextSibling.innerText.lastIndexOf(")"))
                             if (customerURL != "") {
-                                var elem = document.createElement("btn");
+                                let elem = document.createElement("btn");
                                 elem.classList.add("button");
                                 elem.classList.add("button--chtr-o")
                                 elem.classList.add("loginAsButton")
-                                var elemInner = document.createElement("span")
+                                let elemInner = document.createElement("span")
                                 elemInner.classList.add("button__inner")
                                 elemInner.innerText = "Login as Customer"
                                 elem.appendChild(elemInner)
@@ -1035,11 +1035,9 @@ GM_config.init({
                                 parent.appendChild(elem);
 
                                 $(elem).click(function() {
-                                    //console.log('https://zap-hosting.com/de/customer/index.php?userLogin='+customerId)
                                     window.open(customerURL+"&show=profile&autoLogin=true")
                                 })
                             }
-                            //elem2.setAttribute("href", "https://zap-hosting.com/de/customer/index.php?userLogin="+userid)
 
                         }
                     }
