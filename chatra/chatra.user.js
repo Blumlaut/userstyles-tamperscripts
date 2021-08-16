@@ -1021,7 +1021,6 @@ GM_config.init({
                         if (Knr[i].parentElement.innerHTML.indexOf("loginAsButton") == -1) {
                             var parent = Knr[i].parentElement;
                             var nextSibling = Knr[i].nextSibling.nextSibling
-                            console.log(nextSibling.innerText.substring(nextSibling.innerText.indexOf("(")+1,nextSibling.innerText.lastIndexOf(")")));
                             var customerURL = nextSibling.innerText.substring(nextSibling.innerText.indexOf("(")+1,nextSibling.innerText.lastIndexOf(")"))
                             if (customerURL != "") {
                                 var elem = document.createElement("btn");
