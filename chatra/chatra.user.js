@@ -94,11 +94,6 @@ GM_config.init({
             'type': 'text',
             'default': '#3E3E3E'
         },
-        'new-background-color': {
-            'label': 'Sidebar: New Chat Background Color',
-            'type': 'text',
-            'default': '#59582B'
-        },
         'sidebar-bg-color': {
             'label': 'Sidebar: Background Color',
             'type': 'text',
@@ -108,6 +103,11 @@ GM_config.init({
             'label': 'Sidebar: New Chat Hover Color',
             'type': 'text',
             'default': '#4F5E6B'
+        },
+        'new-background-color': {
+            'label': 'Sidebar: New Chat Background Color',
+            'type': 'text',
+            'default': '#59582B'
         },
         'parsed-bg-color': {
             'label': '`Parsed Text` Background Color',
