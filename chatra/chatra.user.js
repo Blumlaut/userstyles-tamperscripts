@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 33
+// @version 34
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -104,6 +104,11 @@ GM_config.init({
             'type': 'text',
             'default': '#454545'
         },
+        'new-background-hover': {
+            'label': 'Sidebar: New Chat Hover Color',
+            'type': 'text',
+            'default': '#4F5E6B'
+        },
         'parsed-bg-color': {
             'label': '`Parsed Text` Background Color',
             'type': 'text',
@@ -113,11 +118,6 @@ GM_config.init({
             'label': 'Note Background Colour',
             'type': 'text',
             'default': '#5e5b2c'
-        },
-        'new-background-hover': {
-            'label': 'Sidebar: New Chat Hover Background Color',
-            'type': 'text',
-            'default': '#4F5E6B'
         },
         'general-txt-color': {
             'label': 'General Text Color',
@@ -194,11 +194,59 @@ GM_config.init({
             'type': 'int',
             'default': '5'
         }
-    }
+    },
+      'events': // Callback functions object
+  {
+    'save': function() { generateStyling(); },
+  }
 });
+var css = ""
+var stylingchanges = ""
 
-(function() {
-    var css = [
+function applyStylingChanges() {
+   if (window.location.href.includes("chatra")) {
+        if (typeof GM_addStyle != "undefined") {
+            if (GM_config.get('enable-darkmode')) {
+                GM_addStyle(css);
+            }
+            if (GM_config.get('enable-stylechanges')) {
+                GM_addStyle(stylingchanges);
+            }
+        } else if (typeof PRO_addStyle != "undefined") {
+            if (GM_config.get('enable-darkmode')) {
+                PRO_addStyle(css);
+            }
+            if (GM_config.get('enable-stylechanges')) {
+                PRO_addStyle(stylingchanges);
+            }
+        } else if (typeof addStyle != "undefined") {
+            if (GM_config.get('enable-darkmode')) {
+                addStyle(css);
+            }
+            if (GM_config.get('enable-stylechanges')) {
+                addStyle(stylingchanges);
+            }
+        } else {
+            let node = document.createElement("style");
+            node.type = "text/css";
+            if (GM_config.get('enable-darkmode')) {
+                node.appendChild(document.createTextNode(css));
+            }
+            if (GM_config.get('enable-stylechanges')) {
+                node.appendChild(document.createTextNode(stylingchanges));
+            }
+            var heads = document.getElementsByTagName("head");
+            if (heads.length > 0) {
+                heads[0].appendChild(node);
+            } else {
+                document.documentElement.appendChild(node);
+            }
+        }
+    }
+}
+
+function generateStyling() {
+css = [
         ".nav-item__footer {",
         "      display: " + GM_config.get('hide-location') + ";",
         "      color:" + GM_config.get('sidebar-text-color') + ";",
@@ -678,8 +726,7 @@ GM_config.init({
         "color: "+ GM_config.get('banned-color')  +";",
         "}",
     ].join("\n");
-
-    var stylingchanges = [
+stylingchanges = [
         ".path__item {",
         " padding:.2em .5em;",
         " max-width:100%;",
@@ -1000,45 +1047,11 @@ GM_config.init({
         "}",
 
     ].join("\n")
-    if (window.location.href.includes("chatra")) {
-        if (typeof GM_addStyle != "undefined") {
-            if (GM_config.get('enable-darkmode')) {
-                GM_addStyle(css);
-            }
-            if (GM_config.get('enable-stylechanges')) {
-                GM_addStyle(stylingchanges);
-            }
-        } else if (typeof PRO_addStyle != "undefined") {
-            if (GM_config.get('enable-darkmode')) {
-                PRO_addStyle(css);
-            }
-            if (GM_config.get('enable-stylechanges')) {
-                PRO_addStyle(stylingchanges);
-            }
-        } else if (typeof addStyle != "undefined") {
-            if (GM_config.get('enable-darkmode')) {
-                addStyle(css);
-            }
-            if (GM_config.get('enable-stylechanges')) {
-                addStyle(stylingchanges);
-            }
-        } else {
-            let node = document.createElement("style");
-            node.type = "text/css";
-            if (GM_config.get('enable-darkmode')) {
-                node.appendChild(document.createTextNode(css));
-            }
-            if (GM_config.get('enable-stylechanges')) {
-                node.appendChild(document.createTextNode(stylingchanges));
-            }
-            var heads = document.getElementsByTagName("head");
-            if (heads.length > 0) {
-                heads[0].appendChild(node);
-            } else {
-                document.documentElement.appendChild(node);
-            }
-        }
-    }
+applyStylingChanges()
+}
+
+(function() {
+    generateStyling()
     setTimeout(function() {
         if (window.location.href.includes("chatra")) {
             var superNavItems = document.querySelectorAll('.super-nav-section');
@@ -1053,7 +1066,6 @@ GM_config.init({
                 GM_config.open();
             })
         }
-
     }, 3000);
 
     function LoopedThread() {
