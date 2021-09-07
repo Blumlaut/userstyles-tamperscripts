@@ -104,11 +104,6 @@ GM_config.init({
             'type': 'text',
             'default': '#454545'
         },
-        'new-background-hover': {
-            'label': 'Sidebar: New Chat Hover Color',
-            'type': 'text',
-            'default': '#4F5E6B'
-        },
         'parsed-bg-color': {
             'label': '`Parsed Text` Background Color',
             'type': 'text',
@@ -118,6 +113,11 @@ GM_config.init({
             'label': 'Note Background Colour',
             'type': 'text',
             'default': '#5e5b2c'
+        },
+        'new-background-hover': {
+            'label': 'Sidebar: New Chat Hover Background Color',
+            'type': 'text',
+            'default': '#4F5E6B'
         },
         'general-txt-color': {
             'label': 'General Text Color',
