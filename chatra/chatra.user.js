@@ -33,7 +33,7 @@ var awaitingAnswerPhrases = [
 
 var ignoredPhrases = [
     "supporter aus amerika",
-    "Eingehende DDoS Angriffe"
+    "eingehende ddos angriffe"
 ]
 
 GM_config.init({
