@@ -142,7 +142,7 @@ GM_config.init({
          'attended-unread-color': {
             'label': 'Sidebar: Attended Unread Chat Color',
             'type': 'text',
-            'default': '#3E3E3E'
+            'default': '#404040'
         },
         'attended-hover-color': {
             'label': 'Sidebar: Attended Chat Hover Color',
