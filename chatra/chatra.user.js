@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 34
+// @version 35
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -136,6 +136,11 @@ GM_config.init({
         },
         'attended-color': {
             'label': 'Sidebar: Attended Chat Color',
+            'type': 'text',
+            'default': '#3E3E3E'
+        },
+         'attended-unread-color': {
+            'label': 'Sidebar: Attended Unread Chat Color',
             'type': 'text',
             'default': '#3E3E3E'
         },
@@ -580,7 +585,7 @@ css = [
         "}",
         "",
         "  .nav-item.is-unread:not(.is-new):not(.is-active) .nav-item__inner {",
-        "    background-color:" + GM_config.get('attended-color') + ";",
+        "    background-color:" + GM_config.get('attended-unread-color') + ";",
         "  }",
         "",
         "",
