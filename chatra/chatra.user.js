@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 35
+// @version 36
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -35,6 +35,53 @@ var ignoredPhrases = [
     "supporter aus amerika",
     "eingehende ddos angriffe"
 ]
+
+
+var presets = {
+    "None": {
+        options : {}
+    },
+    "Default" : {
+        options : {
+            'enable-darkmode': true,
+            'enable-stylechanges': true,
+            'moment-warning': true,
+            'general-bg-color' : '#454545',
+            'aside-background-col' : '#3E3E3E',
+            'sidebar-bg-color' : '#454545',
+            'new-background-hover' : '#4F5E6B',
+            'new-background-color': '#59582B',
+            'parsed-bg-color': '#4F4F4F',
+            'note-bg-color': '#5e5b2c',
+            'general-txt-color': '#DCDCDC',
+            'sidebar-text-color': '#DFDFDF',
+            'open-txt-color': '#DFDFDF',
+            'attended-color': '#3E3E3E',
+            'attended-unread-color': '#404040',
+            'attended-hover-color': '#5D6C7B',
+            'new-active-color': '#27656D',
+            'agent-txt-accent': '#3B99FC',
+            'banned-color': '#FF3D54',
+            'chat-input-color-off': '#737373',
+            'chat-input-color-on': '#3B99FC',
+            'parsed-brd-color': '#5F5F5F',
+            'editing-colour': '#535353',
+            'note-txt-color': '#f6ff4c',
+            'navitem-border-radius': '0',
+            'sidebar-chat-padding': '5'
+        }
+    }
+}
+
+
+var presetNames = []
+
+Object.keys(presets).forEach(key => {
+  presetNames.push(key);
+});
+
+
+
 
 GM_config.init({
     'id': 'Chatra_improved_dark', // The id used for this instance of GM_config
@@ -83,6 +130,12 @@ GM_config.init({
         'section-colors': {
             'section': "Colors",
             'type': 'hidden',
+        },
+        'theme-preset': {
+            'label': 'Theme Preset (save twice to apply!)',
+            'type': 'select',
+            'options': presetNames,
+            'default': 'None'
         },
         'general-bg-color': {
             'label': 'General Background Color',
@@ -202,7 +255,17 @@ GM_config.init({
     },
       'events': // Callback functions object
   {
-    'save': function() { generateStyling(); },
+    'save': function() {
+        Object.keys(presets).forEach(key => {
+            if (key == GM_config.get('theme-preset')) {
+                Object.keys(presets[key].options).forEach(key2 => {
+                   GM_config.set(key2, presets[key].options[key2]);
+                })
+            }
+        });
+        generateStyling();
+    },
+
   }
 });
 var css = ""
