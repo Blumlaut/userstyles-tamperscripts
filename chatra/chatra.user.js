@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 38
+// @version 39
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -120,7 +120,7 @@ GM_config.init({
             'type': 'hidden',
         },
         'enable-darkmode': {
-            'label': 'Enable Dark Mode (refresh required)',
+            'label': 'Enable Colour Changes (refresh required)',
             'type': 'checkbox',
             'default': true
         },
@@ -281,7 +281,7 @@ GM_config.init({
             'default': '5'
         },
         "export-as-preset": {
-            'label': 'Copy Preset to Clipboard (save first!)',
+            'label': 'Export Settings to Clipboard (save first!)',
             'type': 'button',
             'click': function() { // Function to call when button is clicked
                 let name = prompt('Give your preset a name.');
@@ -326,7 +326,7 @@ GM_config.init({
             }
         },
         "import-as-preset": {
-            'label': 'Import Preset',
+            'label': 'Import Settings',
             'type': 'button',
             'click': function() { // Function to call when button is clicked
                 let preset = JSON.parse(prompt('Paste your preset here.'))
