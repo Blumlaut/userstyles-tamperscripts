@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 36
+// @version 37
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -79,6 +79,34 @@ var presetNames = []
 Object.keys(presets).forEach(key => {
   presetNames.push(key);
 });
+
+
+
+// util function to allow copying to clipboard
+function copyToClipboard(text) {
+    if (window.clipboardData && window.clipboardData.setData) {
+        // Internet Explorer-specific code path to prevent textarea being shown while dialog is visible.
+        return window.clipboardData.setData("Text", text);
+
+    }
+    else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+        var textarea = document.createElement("textarea");
+        textarea.textContent = text;
+        textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in Microsoft Edge.
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+        }
+        catch (ex) {
+            console.warn("Copy to clipboard failed.", ex);
+            return false;
+        }
+        finally {
+            document.body.removeChild(textarea);
+        }
+    }
+}
 
 
 
@@ -251,6 +279,22 @@ GM_config.init({
             'label': 'Sidebar Upper&Lower Chat Padding (pixels)',
             'type': 'int',
             'default': '5'
+        },
+        "export-as-preset": {
+            'label': 'Copy Preset to Clipboard (save first!)',
+            'type': 'button',
+            'click': function() { // Function to call when button is clicked
+                let name = prompt('Give your preset a name.');
+                let preset = "'"+name+"' : { options: {'enable-darkmode': '"+GM_config.get('enable-darkmode')+"','enable-stylechanges': '"+GM_config.get('enable-stylechanges')+"','moment-warning': '"+GM_config.get('moment-warning')+"','general-bg-color' : '"+GM_config.get('general-bg-color')+"','aside-background-col' : '"+GM_config.get('aside-background-col')+"','sidebar-bg-color' : '"+GM_config.get('sidebar-bg-color')+"','new-background-hover' : '"+GM_config.get('new-background-hover')+"','new-background-color': '"+GM_config.get('new-background-color')+"','parsed-bg-color': '"+GM_config.get('parsed-bg-color')+"','note-bg-color': '"+GM_config.get('note-bg-color')+"','general-txt-color': '"+GM_config.get('general-txt-color')+"','sidebar-text-color': '"+GM_config.get('sidebar-text-color')+"','open-txt-color': '"+GM_config.get('open-txt-color')+"','attended-color': '"+GM_config.get('attended-color')+"','attended-unread-color': '"+GM_config.get('attended-unread-color')+"','attended-hover-color': '"+GM_config.get('attended-hover-color')+"','new-active-color': '"+GM_config.get('new-active-color')+"','agent-txt-accent': '"+GM_config.get('agent-txt-accent')+"','banned-color': '"+GM_config.get('banned-color')+"','chat-input-color-off': '"+GM_config.get('chat-input-color-off')+"','chat-input-color-on': '"+GM_config.get('chat-input-color-on')+"','parsed-brd-color': '"+GM_config.get('parsed-brd-color')+"','editing-colour': '"+GM_config.get('editing-colour')+"','note-txt-color': '"+GM_config.get('note-txt-color')+"','navitem-border-radius': '"+GM_config.get('navitem-border-radius')+"','sidebar-chat-padding': '"+GM_config.get('sidebar-chat-padding')+"'}}"
+                let copied = copyToClipboard(preset);
+                if (copied) {
+                    alert("Preset copied to clipboard!")
+                } else {
+                    alert(preset)
+                }
+                
+
+            }
         }
     },
       'events': // Callback functions object
