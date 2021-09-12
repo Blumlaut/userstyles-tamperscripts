@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 39
+// @version 40
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -68,7 +68,8 @@ var presets = {
             'editing-colour': '#535353',
             'note-txt-color': '#f6ff4c',
             'navitem-border-radius': '0',
-            'sidebar-chat-padding': '5'
+            'sidebar-chat-padding': '5',
+            'navitem-padding': '0',
         }
     }
 }
@@ -276,9 +277,14 @@ GM_config.init({
             'default': '0'
         },
         "sidebar-chat-padding": {
-            'label': 'Sidebar Upper&Lower Chat Padding (pixels)',
+            'label': 'Sidebar Upper&Lower Chat Padding',
             'type': 'int',
             'default': '5'
+        },
+        "navitem-padding": {
+            'label': 'Padding between Chats',
+            'type': 'int',
+            'default': '0'
         },
         "export-as-preset": {
             'label': 'Export Settings to Clipboard (save first!)',
@@ -314,6 +320,7 @@ GM_config.init({
                             'note-txt-color': GM_config.get('note-txt-color'),
                             'navitem-border-radius': GM_config.get('navitem-border-radius'),
                             'sidebar-chat-padding': GM_config.get('sidebar-chat-padding'),
+                            'navitem-padding': GM_config.get('navitem-padding'),
                         }
                     }}
                     let copied = copyToClipboard(JSON.stringify(preset));
@@ -904,7 +911,7 @@ stylingchanges = [
         " .nav-item {",
         "    border-bottom:0px;",
         "    border-radius:"+ GM_config.get('navitem-border-radius') +"px;",
-        "    margin: 0 0px 0px !important;",
+        "    margin: 0 0px "+GM_config.get('navitem-padding')+"px !important;",
         "}",
         "  .nav-item__last-message {",
         "      font-size:13px;",
