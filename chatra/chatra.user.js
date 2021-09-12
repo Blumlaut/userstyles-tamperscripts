@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 37
+// @version 38
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -285,15 +285,54 @@ GM_config.init({
             'type': 'button',
             'click': function() { // Function to call when button is clicked
                 let name = prompt('Give your preset a name.');
-                let preset = "'"+name+"' : { options: {'enable-darkmode': '"+GM_config.get('enable-darkmode')+"','enable-stylechanges': '"+GM_config.get('enable-stylechanges')+"','moment-warning': '"+GM_config.get('moment-warning')+"','general-bg-color' : '"+GM_config.get('general-bg-color')+"','aside-background-col' : '"+GM_config.get('aside-background-col')+"','sidebar-bg-color' : '"+GM_config.get('sidebar-bg-color')+"','new-background-hover' : '"+GM_config.get('new-background-hover')+"','new-background-color': '"+GM_config.get('new-background-color')+"','parsed-bg-color': '"+GM_config.get('parsed-bg-color')+"','note-bg-color': '"+GM_config.get('note-bg-color')+"','general-txt-color': '"+GM_config.get('general-txt-color')+"','sidebar-text-color': '"+GM_config.get('sidebar-text-color')+"','open-txt-color': '"+GM_config.get('open-txt-color')+"','attended-color': '"+GM_config.get('attended-color')+"','attended-unread-color': '"+GM_config.get('attended-unread-color')+"','attended-hover-color': '"+GM_config.get('attended-hover-color')+"','new-active-color': '"+GM_config.get('new-active-color')+"','agent-txt-accent': '"+GM_config.get('agent-txt-accent')+"','banned-color': '"+GM_config.get('banned-color')+"','chat-input-color-off': '"+GM_config.get('chat-input-color-off')+"','chat-input-color-on': '"+GM_config.get('chat-input-color-on')+"','parsed-brd-color': '"+GM_config.get('parsed-brd-color')+"','editing-colour': '"+GM_config.get('editing-colour')+"','note-txt-color': '"+GM_config.get('note-txt-color')+"','navitem-border-radius': '"+GM_config.get('navitem-border-radius')+"','sidebar-chat-padding': '"+GM_config.get('sidebar-chat-padding')+"'}}"
-                let copied = copyToClipboard(preset);
-                if (copied) {
-                    alert("Preset copied to clipboard!")
-                } else {
-                    alert(preset)
+                if (name) {
+                    let preset = {[name] : {
+                        options : {
+                            'enable-darkmode': GM_config.get('enable-darkmode'),
+                            'enable-stylechanges': GM_config.get('enable-stylechanges'),
+                            'moment-warning': GM_config.get('moment-warning'),
+                            'general-bg-color' : GM_config.get('general-bg-color'),
+                            'aside-background-col' : GM_config.get('aside-background-col'),
+                            'sidebar-bg-color' : GM_config.get('sidebar-bg-color'),
+                            'new-background-hover' : GM_config.get('new-background-hover'),
+                            'new-background-color': GM_config.get('new-background-color'),
+                            'parsed-bg-color': GM_config.get('parsed-bg-color'),
+                            'note-bg-color': GM_config.get('note-bg-color'),
+                            'general-txt-color': GM_config.get('general-txt-color'),
+                            'sidebar-text-color': GM_config.get('sidebar-text-color'),
+                            'open-txt-color': GM_config.get('open-txt-color'),
+                            'attended-color': GM_config.get('attended-color'),
+                            'attended-unread-color': GM_config.get('attended-unread-color'),
+                            'attended-hover-color': GM_config.get('attended-hover-color'),
+                            'new-active-color': GM_config.get('new-active-color'),
+                            'agent-txt-accent': GM_config.get('agent-txt-accent'),
+                            'banned-color': GM_config.get('banned-color'),
+                            'chat-input-color-off': GM_config.get('chat-input-color-off'),
+                            'chat-input-color-on': GM_config.get('chat-input-color-on'),
+                            'parsed-brd-color': GM_config.get('parsed-brd-color'),
+                            'editing-colour': GM_config.get('editing-colour'),
+                            'note-txt-color': GM_config.get('note-txt-color'),
+                            'navitem-border-radius': GM_config.get('navitem-border-radius'),
+                            'sidebar-chat-padding': GM_config.get('sidebar-chat-padding'),
+                        }
+                    }}
+                    let copied = copyToClipboard(JSON.stringify(preset));
+                    if (copied) {
+                        alert("Preset copied to clipboard!")
+                    } else {
+                        alert(preset)
+                    }
                 }
-                
-
+            }
+        },
+        "import-as-preset": {
+            'label': 'Import Preset',
+            'type': 'button',
+            'click': function() { // Function to call when button is clicked
+                let preset = JSON.parse(prompt('Paste your preset here.'))
+                if (preset) {
+                    loadPreset(Object.entries(preset)[0][1]);
+                }
             }
         }
     },
@@ -302,9 +341,7 @@ GM_config.init({
     'save': function() {
         Object.keys(presets).forEach(key => {
             if (key == GM_config.get('theme-preset')) {
-                Object.keys(presets[key].options).forEach(key2 => {
-                   GM_config.set(key2, presets[key].options[key2]);
-                })
+                loadPreset(presets[key])
             }
         });
         generateStyling();
@@ -314,6 +351,12 @@ GM_config.init({
 });
 var css = ""
 var stylingchanges = ""
+
+function loadPreset(preset) {
+    Object.keys(preset.options).forEach(key => {
+        GM_config.set(key, preset.options[key]);
+    })
+}
 
 function applyStylingChanges() {
    if (window.location.href.includes("chatra")) {
