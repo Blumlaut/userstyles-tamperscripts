@@ -6,7 +6,7 @@
 // @match https://schichtplaner-online.de/dashboard/schedule/*
 // @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // @require     https://code.jquery.com/jquery-3.5.1.min.js
-// @version       2
+// @version       3
 // @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // @downloadURL   https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // ==/UserScript==
@@ -63,6 +63,10 @@
 
     // generate button
     var mydiv = document.querySelector('.live_head_item').parentNode;
+
+    var newline = document.createElement("br");
+
+    mydiv.appendChild(newline)
 
     for (var i = 0; i < ButtonTypes.length; ++i) {
         var btn = document.createElement("BUTTON" );
