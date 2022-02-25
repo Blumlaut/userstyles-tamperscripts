@@ -13,7 +13,7 @@
 // @grant              GM_getValue
 // @grant              GM_setValue
 // @run-at        document-start
-// @version 40
+// @version 41
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -70,6 +70,36 @@ var presets = {
             'navitem-border-radius': '0',
             'sidebar-chat-padding': '5',
             'navitem-padding': '0',
+        }
+    },
+    "Florians Darkmode' : {
+        "options": {
+          "enable-darkmode": true,
+          "enable-stylechanges": true,
+          "moment-warning": false,
+          "general-bg-color": "#2f3136",
+          "aside-background-col": "#373a40",
+          "sidebar-bg-color": "#373a40",
+          "new-background-hover": "#0089ff",
+          "new-background-color": "#4f4a00",
+          "parsed-bg-color": "#4F4F4F",
+          "note-bg-color": "#7c7d31",
+          "general-txt-color": "#d9d9d9",
+          "sidebar-text-color": "#d9d9d9",
+          "open-txt-color": "#DFDFDF",
+          "attended-color": "#333333",
+          "attended-unread-color": "#404040",
+          "attended-hover-color": "#507fad",
+          "new-active-color": "#3b7880",
+          "agent-txt-accent": "#3B99FC",
+          "banned-color": "#FF3D54",
+          "chat-input-color-off": "#3e3f42",
+          "chat-input-color-on": "#2a78c9",
+          "parsed-brd-color": "#5F5F5F",
+          "editing-colour": "#535353",
+          "note-txt-color": "#f6ff4c",
+          "navitem-border-radius": 0,
+          "sidebar-chat-padding": 5
         }
     }
 }
