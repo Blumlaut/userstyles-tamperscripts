@@ -72,8 +72,8 @@ var presets = {
             'navitem-padding': '0',
         }
     },
-    "Florians Darkmode' : {
-        "options": {
+    "Florians Darkmode" : {
+        options: {
           "enable-darkmode": true,
           "enable-stylechanges": true,
           "moment-warning": false,
