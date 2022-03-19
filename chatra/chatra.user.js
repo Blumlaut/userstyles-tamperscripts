@@ -12,8 +12,9 @@
 // @require            https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @grant              GM_getValue
 // @grant              GM_setValue
+// @grant          GM_addStyle
 // @run-at        document-start
-// @version 42
+// @version 43
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -404,6 +405,7 @@ function applyStylingChanges() {
             if (GM_config.get('enable-stylechanges')) {
                 GM_addStyle(stylingchanges);
             }
+            console.log("added style via GM_addStyle")
         } else if (typeof PRO_addStyle != "undefined") {
             if (GM_config.get('enable-darkmode')) {
                 PRO_addStyle(css);
@@ -411,6 +413,7 @@ function applyStylingChanges() {
             if (GM_config.get('enable-stylechanges')) {
                 PRO_addStyle(stylingchanges);
             }
+            console.log("added style via PRO_addStyle")
         } else if (typeof addStyle != "undefined") {
             if (GM_config.get('enable-darkmode')) {
                 addStyle(css);
@@ -418,6 +421,7 @@ function applyStylingChanges() {
             if (GM_config.get('enable-stylechanges')) {
                 addStyle(stylingchanges);
             }
+            console.log("added style via addStyle")
         } else {
             let node = document.createElement("style");
             node.type = "text/css";
@@ -433,6 +437,7 @@ function applyStylingChanges() {
             } else {
                 document.documentElement.appendChild(node);
             }
+            console.log("added style via html hack")
         }
     }
 }
