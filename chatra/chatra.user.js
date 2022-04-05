@@ -14,7 +14,7 @@
 // @grant              GM_setValue
 // @grant          GM_addStyle
 // @run-at        document-start
-// @version 43
+// @version 44
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -44,9 +44,6 @@ var presets = {
     },
     "Default" : {
         options : {
-            'enable-darkmode': true,
-            'enable-stylechanges': true,
-            'moment-warning': true,
             'general-bg-color' : '#454545',
             'aside-background-col' : '#3E3E3E',
             'sidebar-bg-color' : '#454545',
@@ -75,9 +72,6 @@ var presets = {
     },
     "Florians Darkmode" : {
         options: {
-          "enable-darkmode": true,
-          "enable-stylechanges": true,
-          "moment-warning": false,
           "general-bg-color": "#2f3136",
           "aside-background-col": "#373a40",
           "sidebar-bg-color": "#373a40",
