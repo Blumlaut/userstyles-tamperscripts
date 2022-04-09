@@ -186,7 +186,7 @@ GM_config.init({
             'type': 'hidden',
         },
         'theme-preset': {
-            'label': 'Theme Preset (save twice to apply!)',
+            'label': 'Theme Preset (refresh after applying!)',
             'type': 'select',
             'options': presetNames,
             'default': 'None'
