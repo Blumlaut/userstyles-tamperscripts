@@ -14,7 +14,7 @@
 // @grant              GM_setValue
 // @grant          GM_addStyle
 // @run-at        document-start
-// @version 44
+// @version 45
 // @updateURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // @downloadURL https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/chatra/chatra.user.js
 // ==/UserScript==
@@ -376,6 +376,7 @@ GM_config.init({
                 loadPreset(presets[key])
             }
         });
+        GM_config.set('theme-preset', "None")
         generateStyling();
     },
 
