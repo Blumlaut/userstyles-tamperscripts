@@ -6,7 +6,7 @@
 // @match https://schichtplaner-online.de/*schedule/*
 // @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // @require     https://code.jquery.com/jquery-3.5.1.min.js
-// @version       4
+// @version       5
 // @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // @downloadURL   https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // ==/UserScript==
@@ -81,7 +81,7 @@
         for (var i = 0; i < allDays.length; ++i) {
             if(allDays[i].innerHTML.indexOf(filter) !== -1) {
                 var checkIn = allDays[i].querySelector('.btn');
-                if (checkIn != null && allDays[i].innerHTML.indexOf("Kann hier nicht") !== -1 && !blacklistedTimes.includes(getShiftString(allDays[i])) ) {
+                if (checkIn != null && allDays[i].innerHTML.indexOf("Mich hier eintragen") !== -1 && !blacklistedTimes.includes(getShiftString(allDays[i])) ) {
                     checkIn.click();
                 }
             }
