@@ -6,7 +6,7 @@
 // @match https://schichtplaner-online.de/*schedule/*
 // @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // @require     https://code.jquery.com/jquery-3.5.1.min.js
-// @version       5
+// @version       6
 // @updateURL     https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // @downloadURL   https://raw.githubusercontent.com/Blumlaut/userstyles-tamperscripts/main/schichtplaner-online/schichtplaner.user.js
 // ==/UserScript==
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    var blacklistedTimes = ['18:30 - 23:00']
+    var blacklistedTimes = ['18:30 - 23:00', '18:30-23:00']
 
     var ButtonTypes = [
         [
@@ -82,6 +82,7 @@
             if(allDays[i].innerHTML.indexOf(filter) !== -1) {
                 var checkIn = allDays[i].querySelector('.btn');
                 if (checkIn != null && allDays[i].innerHTML.indexOf("Mich hier eintragen") !== -1 && !blacklistedTimes.includes(getShiftString(allDays[i])) ) {
+                    console.log(`checked in ${checkIn}`)
                     checkIn.click();
                 }
             }
